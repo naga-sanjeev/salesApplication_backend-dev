@@ -1,0 +1,360 @@
+swagger: '2.0'
+info:
+  title: Sales API Documentation
+  description: API documentation for sectors, projects, and practices
+  version: 1.0.0
+basePath: /sales
+schemes:
+  - http
+  - https
+tags:
+  - name: Users
+    description: This APIs is used to maintain Users, who are going to login.
+  - name: Sectors
+    description: This APIs is used to maintain different sector in IT industries.
+  - name: Projects
+    description: This APIs tell what are the Projects within our organization to sales.
+  - name: Practices
+    description: This APIs tell what are the Practices within our organization and Also Sales team are able to add New client project to it.
+  - name: Project Info
+    description: In this APIs we maintain detailed overview of Projects within our organization.
+paths:
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Retrieve all users
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        201:
+          description: User created successfully
+  /sectors:
+    get:
+      tags:
+        - Sectors
+      summary: Retrieve all sectors
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sector'
+    post:
+      tags:
+        - Sectors
+      summary: Create a new sector
+      parameters:
+        - name: sector
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Sector'
+      responses:
+        201:
+          description: Sector created successfully
+  /sectors/{sectorId}:
+    put:
+      tags:
+        - Sectors
+      summary: Update a specific sector by ID
+      parameters:
+        - name: sectorId
+          in: path
+          required: true
+          type: integer
+        - name: sector
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Sector'
+      responses:
+        200:
+          description: Sector updated successfully
+    delete:
+      tags:
+        - Sectors
+      summary: Delete a specific sector by ID
+      parameters:
+        - name: sectorId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Sector deleted successfully
+
+  /projects:
+    get:
+      tags:
+        - Projects
+      summary: Retrieve all projects
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Project'
+    post:
+      tags:
+        - Projects
+      summary: Create a new project
+      parameters:
+        - name: project
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Project'
+      responses:
+        201:
+          description: Project created successfully
+  /projects/{projectId}:
+    put:
+      tags:
+        - Projects
+      summary: Update a specific project by ID
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          type: integer
+        - name: project
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Project'
+      responses:
+        200:
+          description: Project updated successfully
+    delete:
+      tags:
+        - Projects
+      summary: Delete a specific project by ID
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Project deleted successfully
+
+  /practices:
+    get:
+      tags:
+        - Practices
+      summary: Retrieve all practices
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Practice'
+    post:
+      tags:
+        - Practices
+      summary: Create a new practice
+      parameters:
+        - name: practice
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Practice'
+      responses:
+        201:
+          description: Practice created successfully
+  /practices/{practiceId}:
+    put:
+      tags:
+        - Practices
+      summary: Update a specific practice by ID
+      parameters:
+        - name: practiceId
+          in: path
+          required: true
+          type: integer
+        - name: practice
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Practice'
+      responses:
+        200:
+          description: Practice updated successfully
+    delete:
+      tags:
+        - Practices
+      summary: Delete a specific practice by ID
+      parameters:
+        - name: practiceId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Practice deleted successfully
+          
+  /project_info:
+    get:
+      tags:
+        - Project Info
+      summary: Retrieve all project_info
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectInfo'
+    post:
+      tags:
+        - Project Info
+      summary: Create a new project_info
+      parameters:
+        - name: projectInfo
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ProjectInfo'
+      responses:
+        201:
+          description: ProjectInfo created successfully
+
+  /project_info/{projectInfoId}:
+    put:
+      tags:
+        - Project Info
+      summary: Update a specific project_info by ID
+      parameters:
+        - name: projectInfoId
+          in: path
+          required: true
+          type: integer
+        - name: projectInfo
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ProjectInfo'
+      responses:
+        200:
+          description: ProjectInfo updated successfully
+    delete:
+      tags:
+        - Project Info
+      summary: Delete a specific project_info by ID
+      parameters:
+        - name: projectInfoId
+          in: path
+          required: true
+          type: integer
+      responses:
+        204:
+          description: ProjectInfo deleted successfully
+
+definitions:
+  User:
+    type: object
+    properties:
+      user_Id:
+        type: integer
+      Name:
+        type: string
+      Role:
+        type: string
+      Email:
+        type: string
+        format: email
+      Username:
+        type: string
+      Password:
+        type: string
+  Sector:
+    type: object
+    properties:
+      sector_Id:
+        type: integer
+      sector_type:
+        type: string
+  Project:
+    type: object
+    properties:
+      project_Id:
+        type: integer
+      project_name:
+        type: string
+      practice_name:
+        type: string
+      Technology:
+        type: string
+      Description:
+        type: string
+      Status:
+        type: string
+      Client_name:
+        type: string
+      Sector_type:
+        type: integer
+      requirement:
+        type: string
+      Conversion:
+        type: string
+      start_date:
+        type: string
+      end_date:
+        type: string
+      POC:
+        type: string
+  Practice:
+    type: object
+    properties:
+      practice_Id:
+        type: integer
+      practice_name:
+        type: string
+  ProjectInfo:
+    type: object
+    properties:
+      project_Id:
+        type: integer
+      project_name:
+        type: string
+      practice_name:
+        type: string
+      Technology:
+        type: string
+      Description:
+        type: string
+      Status:
+        type: string
+      Client_name:
+        type: string
+      sector_type:
+        type: string
+      requirement:
+        type: string
+      Conversion:
+        type: string
+      start_date:
+        type: string
+      end_date:
+        type: string
+      POC:
+        type: string

@@ -1,0 +1,56 @@
+# industries.graphql
+type Industries {
+  industryId: ID!
+  name: String!
+}
+
+type Query {
+  getIndustries: [Industries]
+  getIndustry(id: ID!): Industries
+}
+
+type Mutation {
+  createIndustry(name: String!): Industries
+}
+
+# practices.graphql
+type Practices {
+  practiceId: ID!
+  name: String!
+}
+
+type Query {
+  getPractices: [Practices]
+}
+
+type Mutation {
+  createPractice(name: String!): Practices
+}
+
+# status.graphql
+type Status {
+  statusId: ID!
+  status: String!
+}
+
+type Query {
+  getStatus: [Status]
+}
+
+type Mutation {
+  createStatus(status: String!): Status
+}
+
+# account.graphql
+type Account {
+  accountId: ID!
+  accountType: String!
+}
+
+type Query {
+  getAccounts: [Account]
+}
+
+type Mutation {
+  createAccount(accountType: String!): Account
+}

@@ -1,0 +1,34 @@
+type User {
+  user_id: ID!
+  name: String!
+  role: String!
+  email: String!
+  username: String!
+  password: String!
+}
+
+# User Menu
+type Menu {
+  menuId: ID!
+  role: String!
+  screens: String!
+}
+
+type Query {
+  getUsers: [User]!
+  getMenu: [Menu]!
+  getNamesOfUsers: [User]!
+  getScreenByRole: [Menu]
+}
+
+type Mutation {
+  createUser(
+    name: String!
+    role: String!
+    email: String!
+    username: String!
+    password: String!
+  ): User!
+  userLogin(userName: String!, password: String!): String!
+  createMenu(role: String!, screens: String!): Menu!
+}

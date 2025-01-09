@@ -1,0 +1,67 @@
+# projects.graphql
+type Project {
+  projectId: ID!
+  clientName: String!
+  industryType: String!
+  practiceName: String!
+  submittedBy: String!
+  role: String!
+  reportsTo: String!
+  name: String!
+  accountType: String
+  requirement: String
+  date: String
+  conversation: String
+  pointOfContact: String
+  projectName: String
+  status: String
+  technology: String
+  description: String
+  architecture: String
+  startDate: String
+  endDate: String
+}
+
+type ProjectsHistory {
+  historyId: ID!
+  project_Id: ID!
+  actions: String!
+  submittedBy: String!
+  createdAt: String!
+}
+
+input ProjectsInput {
+  clientName: String!
+  industryType: String!
+  practiceName: String!
+  submittedBy: String!
+  role: String!
+  reportsTo: String!
+  name: String!
+  accountType: String
+  requirement: String
+  date: String
+  conversation: String
+  pointOfContact: String
+  projectName: String
+  status: String
+  technology: String
+  description: String
+  architecture: String
+  startDate: String
+  endDate: String
+}
+
+type Query {
+  getProjectsTableData(role: String!): [Project]!
+  getMyActivitiesOfUser(username: String!): [Project]!
+  getMyTeamActivities(reportsTo: String!): [Project]!
+  getProjectsHistoryByProjectId: [ProjectsHistory]!
+  getProjects: [Project]!
+}
+
+type Mutation {
+  createProject(input: ProjectsInput): Project!
+  editMyActivity(projectId: Int!, input: ProjectsInput): [Project]!
+  deleteProject(projectId: Int!): Boolean
+}
